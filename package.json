@@ -1,0 +1,53 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@lerna-conductor/core": "0.0.1",
+    "commitizen": "^4.2.3",
+    "cross-env": "^7.0.3",
+    "cz-lerna-changelog": "^2.0.3",
+    "husky": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "react-scripts": "^4.0.3"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "lerna": "lerna",
+    "start:client": "lerna run --parallel --stream start:client",
+    "build": "lerna run build",
+    "start": "node packages/core/lib/index.js start build --scope=examples --buildDeps",
+    "commit": "cz",
+    "version:next": "lerna version ...",
+    "publish:next": "lerna publish ...",
+    "release:next": "npm run version:next && npm run publish:next",
+    "version:main": "lerna version ...",
+    "publish:main": "lerna publish ...",
+    "release:main": "npm run version:main && npm run publish:main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alicornjs/alicorn.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
