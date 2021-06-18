@@ -1,6 +1,6 @@
 {
   "name": "@lerna-conductor/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "license": "MIT",
   "main": "lib/index.js",
